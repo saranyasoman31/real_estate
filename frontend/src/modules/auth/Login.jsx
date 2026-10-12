@@ -25,9 +25,10 @@ const Login = () => {
 
     try {
       setLoading(true);
-      const user = await login(email, password);
-      await showAlertSuccess('Welcome Back!', 'Signed in successfully to your customer account.');
-      if (['client', 'admin', 'super_admin'].includes(user?.role)) {
+      const res = await login(email, password);
+      const loggedInUser = res?.user || res;
+      await showAlertSuccess('Welcome Back!', 'Signed in successfully.');
+      if (['client', 'admin', 'super_admin'].includes(loggedInUser?.role)) {
         navigate('/admin/dashboard');
       } else {
         navigate('/properties');
@@ -95,7 +96,7 @@ const Login = () => {
           )}
 
           {/* Login Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} noValidate className="space-y-4">
             <div>
               <label className="block text-xs font-bold text-slate-300 mb-1.5">Email Address or Username</label>
               <div className="relative">
@@ -103,6 +104,7 @@ const Login = () => {
                   type="text"
                   required
                   placeholder="Email or darvproperties.com"
+                  autoComplete="username"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"

@@ -32,12 +32,12 @@ const AdminLogin = () => {
 
     try {
       const res = await login(formData.email, formData.password);
-      if (res.success) {
+      if (res && (res.success || res.user || res.id)) {
         await showAlertSuccess('Welcome Back, Agent!', 'Logged in to Property Management Console.');
         navigate('/admin/dashboard');
       }
     } catch (err) {
-      showAlertError('Authentication Failed', err.response?.data?.message || err.message || 'Invalid email or password.');
+      showAlertError('Authentication Failed', err.response?.data?.message || err.message || 'Invalid username or password.');
     } finally {
       setLoading(false);
     }
@@ -93,7 +93,7 @@ const AdminLogin = () => {
           </div>
 
           {/* Login Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} noValidate className="space-y-4">
             <div>
               <label className="block text-xs font-bold text-slate-300 mb-1.5">Agent Username / Email</label>
               <div className="relative">
@@ -102,6 +102,7 @@ const AdminLogin = () => {
                   name="email"
                   required
                   placeholder="darvproperties.com"
+                  autoComplete="username"
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
