@@ -10,19 +10,21 @@ DirectoryIndex index.html
   RewriteEngine On
   RewriteBase /DARV/
 
-  # Force trailing slash on /DARV
+  # 1. Force trailing slash on /DARV
   RewriteCond %{REQUEST_URI} ^/DARV$ [NC]
   RewriteRule ^(.*)$ /DARV/ [R=301,L]
 
-  # Don't rewrite real existing files or directories
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-
-  # Pass API requests directly to api directory
-  RewriteCond %{REQUEST_URI} ^/DARV/api [NC]
+  # 2. Never rewrite real existing files (assets/*.js, assets/*.css, images/*)
+  RewriteCond %{REQUEST_FILENAME} -f
   RewriteRule ^ - [L]
 
-  # Route all other URLs to index.html for React Router SPA
+  # 3. Never rewrite real existing directories (api/, assets/, images/)
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # 4. Route all other client URLs to index.html for React Router SPA
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ index.html [QSA,L]
 </IfModule>
 
@@ -38,7 +40,7 @@ DirectoryIndex index.html
   ExpiresByType application/javascript "access plus 1 month"
 </IfModule>
 
-# Protect backend and sensitive files from direct web access
+# Protect sensitive files from direct web access
 <FilesMatch "^\.|\.env|docker-compose\.yml|ecosystem\.config\.js">
   Order allow,deny
   Deny from all
