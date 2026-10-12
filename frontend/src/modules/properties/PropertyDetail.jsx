@@ -7,6 +7,7 @@ import EnquiryModal from '../../components/EnquiryModal';
 import FeedbackModal from '../../components/FeedbackModal';
 import PropertyCard from '../../components/PropertyCard';
 import { showToast } from '../../utils/alerts';
+import { getAssetUrl } from '../../utils/paths';
 import {
   Bed,
   Bath,
@@ -144,7 +145,7 @@ const PropertyDetail = () => {
   const displayEmail = property.agent_email || agency?.email || 'saranyasoman31@gmail.com';
   const displayWebsite = property.agent_website || agency?.website || 'https://www.darvproperties.com';
   const displayAddress = property.agent_address || property.agent_office || agency?.address || 'DARV Tower, Kowdiar Main Road, Trivandrum, Kerala - 695003';
-  const displayLogo = property.agent_logo || property.agent_avatar || agency?.logo || '/images/darv-logo.png';
+  const displayLogo = getAssetUrl(property.agent_logo || property.agent_avatar || agency?.logo || '/images/darv-logo.png');
   const displayAgentName = property.agent_name || agency?.name || 'Saranya Soman';
   const displayAgency = property.agency_name || agency?.agency_name || 'DARV Real Estate & Construction';
 

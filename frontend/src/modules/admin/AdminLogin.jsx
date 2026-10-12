@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { getAssetUrl } from '../../utils/paths';
 import { Building2, Lock, Mail, ArrowRight, ShieldCheck, ArrowLeft } from 'lucide-react';
 import { showAlertSuccess, showAlertError } from '../../utils/alerts';
 
@@ -74,7 +75,7 @@ const AdminLogin = () => {
           <div className="text-center space-y-2">
             <div className="bg-white p-2.5 rounded-2xl shadow-xl border border-amber-300/60 inline-flex items-center mx-auto mb-2">
               <img
-                src="/images/darv-logo.png"
+                src={getAssetUrl('/images/darv-logo.png')}
                 alt="DARV Real Estate & Construction"
                 className="h-10 w-auto object-contain"
               />

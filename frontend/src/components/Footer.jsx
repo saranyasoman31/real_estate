@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { getAssetUrl } from '../utils/paths';
 import {
   Building2,
   ShieldCheck,
@@ -37,7 +38,7 @@ const Footer = () => {
             <Link to="/" className="inline-block group">
               <div className="bg-white p-2.5 rounded-2xl shadow-md border border-amber-300/60 inline-flex items-center group-hover:shadow-amber-400/20 transition">
                 <img
-                  src="/images/darv-logo.png"
+                  src={getAssetUrl('/images/darv-logo.png')}
                   alt="DARV Real Estate & Construction"
                   className="h-10 sm:h-12 w-auto object-contain"
                 />

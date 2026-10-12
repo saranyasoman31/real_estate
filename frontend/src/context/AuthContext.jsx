@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { authService, agentService } from '../services/api';
+import { getAssetUrl } from '../utils/paths';
 
 const AuthContext = createContext(null);
 
@@ -9,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [agency, setAgency] = useState({
     name: 'Saranya Soman',
-    logo: '/images/darv-logo.png',
+    logo: getAssetUrl('/images/darv-logo.png'),
     phone: '+91 6282649279',
     whatsapp: '+916282649279',
     email: 'saranyasoman31@gmail.com',
@@ -23,7 +24,10 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await agentService.getPrimaryAgent();
       if (res.success && res.data) {
-        setAgency(res.data);
+        const data = res.data;
+        if (data.logo) data.logo = getAssetUrl(data.logo);
+        if (data.logo_url) data.logo_url = getAssetUrl(data.logo_url);
+        setAgency(data);
       }
     } catch (e) {
       console.warn('Could not fetch primary agency details, using defaults.');

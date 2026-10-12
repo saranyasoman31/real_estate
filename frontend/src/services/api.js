@@ -1,7 +1,18 @@
 import axios from 'axios';
 
+const getBaseApiUrl = () => {
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  const path = window.location.pathname.toLowerCase();
+  if (path.startsWith('/darv')) {
+    return '/DARV/api/v1';
+  }
+  return '/api/v1';
+};
+
 const API = axios.create({
-  baseURL: '/api/v1',
+  baseURL: getBaseApiUrl(),
   headers: {
     'Content-Type': 'application/json',
   },

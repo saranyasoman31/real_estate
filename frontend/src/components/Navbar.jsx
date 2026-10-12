@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { notificationService } from '../services/api';
 import { showConfirmDialog, showToast } from '../utils/alerts';
+import { getAssetUrl } from '../utils/paths';
 import {
   Building2,
   Heart,
@@ -66,7 +67,7 @@ const Navbar = () => {
           <div className="flex items-center gap-6">
             <Link to="/" className="flex items-center gap-2 group py-1">
               <img
-                src="/images/darv-logo.png"
+                src={getAssetUrl('/images/darv-logo.png')}
                 alt="DARV Real Estate & Construction"
                 className="h-10 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
               />

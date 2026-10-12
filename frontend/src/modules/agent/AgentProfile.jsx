@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { agentService } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import { showAlertSuccess, showAlertError, showToast } from '../../utils/alerts';
+import { getAssetUrl } from '../../utils/paths';
 import {
   ShieldCheck,
   CheckCircle2,
@@ -194,7 +195,7 @@ const AgentProfile = () => {
             <div className="flex flex-col sm:flex-row sm:items-center gap-5">
               <div className="relative group w-24 h-24 rounded-2xl overflow-hidden ring-4 ring-white/10 shadow-2xl bg-slate-800 shrink-0">
                 <img
-                  src={profile.logo || profile.logo_url || '/images/darv-icon.png'}
+                  src={getAssetUrl(profile.logo || profile.logo_url || '/images/darv-icon.png')}
                   alt={profile.name}
                   className="w-full h-full object-cover"
                 />
@@ -310,7 +311,7 @@ const AgentProfile = () => {
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 <div className="w-16 h-16 rounded-xl overflow-hidden bg-white border border-slate-200 shadow-xs shrink-0">
                   <img
-                    src={profile.logo || profile.logo_url || '/images/darv-icon.png'}
+                    src={getAssetUrl(profile.logo || profile.logo_url || '/images/darv-icon.png')}
                     alt="Logo Preview"
                     className="w-full h-full object-cover"
                   />

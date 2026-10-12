@@ -1,4 +1,4 @@
-# DirectoryIndex ensures index.html is loaded by default
+# Ensure DirectoryIndex
 DirectoryIndex index.html
 
 # Prevent directory browsing
@@ -8,6 +8,11 @@ DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  RewriteBase /DARV/
+
+  # Force trailing slash on /DARV
+  RewriteCond %{REQUEST_URI} ^/DARV$ [NC]
+  RewriteRule ^(.*)$ /DARV/ [R=301,L]
 
   # Don't rewrite real existing files or directories
   RewriteCond %{REQUEST_FILENAME} !-f

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { propertyService, masterDataService, feedbackService } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
+import { getAssetUrl } from '../../utils/paths';
 import SearchBar from '../../components/SearchBar';
 import PropertyCard from '../../components/PropertyCard';
 import EnquiryModal from '../../components/EnquiryModal';
@@ -613,7 +614,7 @@ const HomePage = () => {
                         <div className="mt-3 p-3.5 rounded-2xl bg-gradient-to-r from-brand-50/70 via-indigo-50/40 to-slate-50 border border-brand-200/80 space-y-1.5 shadow-xs">
                           <div className="flex items-center gap-2">
                             <img
-                              src={agency?.logo || "/images/darv-icon.png"}
+                              src={getAssetUrl(agency?.logo || "/images/darv-icon.png")}
                               alt="Saranya Soman"
                               className="w-5 h-5 rounded-full object-cover ring-1 ring-brand-500"
                             />
