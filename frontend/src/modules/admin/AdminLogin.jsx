@@ -101,7 +101,7 @@ const AdminLogin = () => {
                   type="text"
                   name="email"
                   required
-                  placeholder="darvproperties.com"
+                  placeholder="Enter agent username or email"
                   autoComplete="username"
                   value={formData.email}
                   onChange={handleChange}
@@ -118,7 +118,8 @@ const AdminLogin = () => {
                   type="password"
                   name="password"
                   required
-                  placeholder="123456"
+                  placeholder="••••••••"
+                  autoComplete="current-password"
                   value={formData.password}
                   onChange={handleChange}
                   className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
@@ -135,12 +136,6 @@ const AdminLogin = () => {
               <span>{loading ? 'Authenticating...' : 'Sign In as Agent'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
-
-            <div className="p-2.5 rounded-xl bg-slate-800/50 border border-slate-700/60 text-center">
-              <p className="text-[11px] text-slate-400">
-                Agent Login: <strong className="text-amber-300 font-mono">darvproperties.com</strong> &nbsp;•&nbsp; Pass: <strong className="text-amber-300 font-mono">123456</strong>
-              </p>
-            </div>
           </form>
 
           {/* Public customer notice */}

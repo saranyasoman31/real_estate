@@ -103,7 +103,7 @@ const Login = () => {
                 <input
                   type="text"
                   required
-                  placeholder="Email or darvproperties.com"
+                  placeholder="Enter email or username"
                   autoComplete="username"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -120,6 +120,7 @@ const Login = () => {
                   type="password"
                   required
                   placeholder="••••••••"
+                  autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
