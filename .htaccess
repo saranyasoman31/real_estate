@@ -18,6 +18,10 @@ DirectoryIndex index.html
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
 
+  # Pass API requests directly to api directory
+  RewriteCond %{REQUEST_URI} ^/DARV/api [NC]
+  RewriteRule ^ - [L]
+
   # Route all other URLs to index.html for React Router SPA
   RewriteRule ^ index.html [QSA,L]
 </IfModule>
