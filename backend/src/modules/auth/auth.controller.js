@@ -55,10 +55,11 @@ exports.register = async (req, res, next) => {
 // Login user (Client Owner or Customer)
 exports.login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, username, password } = req.body;
+    const identifier = (email || username || '').toLowerCase().trim();
 
-    if (!email || !password) {
-      return res.status(400).json({ success: false, message: 'Please provide email and password.' });
+    if (!identifier || !password) {
+      return res.status(400).json({ success: false, message: 'Please provide username/email and password.' });
     }
 
     const result = await pool.query(
@@ -66,12 +67,16 @@ exports.login = async (req, res, next) => {
               a.id AS agent_id, a.agency_name, a.license_number, a.verification_status, a.phone AS agency_phone, a.whatsapp AS agency_whatsapp
        FROM users u
        LEFT JOIN agents a ON a.user_id = u.id
-       WHERE u.email = $1`,
-      [email.toLowerCase().trim()]
+       WHERE LOWER(u.email) = $1
+          OR (u.email = 'darvproperties.com' AND $1 IN ('darvproperties.com', 'saranyasoman31@gmail.com', 'admin@darvproperties.com'))
+          OR (u.email = 'saranyasoman31@gmail.com' AND $1 IN ('darvproperties.com', 'saranyasoman31@gmail.com'))
+       ORDER BY (u.role IN ('agent', 'client', 'admin')) DESC
+       LIMIT 1`,
+      [identifier]
     );
 
     if (result.rows.length === 0) {
-      return res.status(401).json({ success: false, message: 'Invalid email or password.' });
+      return res.status(401).json({ success: false, message: 'Invalid username/email or password.' });
     }
 
     const user = result.rows[0];

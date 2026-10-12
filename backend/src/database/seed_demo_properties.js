@@ -11,12 +11,12 @@ async function seedDemoProperties() {
       SELECT a.id, a.agency_name, u.email 
       FROM agents a 
       JOIN users u ON u.id = a.user_id 
-      WHERE u.email = 'saranyasoman31@gmail.com'
+      WHERE u.email IN ('darvproperties.com', 'saranyasoman31@gmail.com')
       LIMIT 1
     `);
 
     if (agentRes.rows.length === 0) {
-      throw new Error("Agent saranyasoman31@gmail.com not found. Please ensure database has been seeded.");
+      throw new Error("Default agent user not found. Please ensure database has been seeded.");
     }
     const agentId = agentRes.rows[0].id;
     console.log(`✓ Found primary agent (ID: ${agentId}, email: ${agentRes.rows[0].email})`);

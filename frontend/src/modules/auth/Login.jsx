@@ -97,12 +97,12 @@ const Login = () => {
           {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-slate-300 mb-1.5">Email Address</label>
+              <label className="block text-xs font-bold text-slate-300 mb-1.5">Email Address or Username</label>
               <div className="relative">
                 <input
-                  type="email"
+                  type="text"
                   required
-                  placeholder="name@example.com"
+                  placeholder="Email or darvproperties.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
@@ -131,7 +131,7 @@ const Login = () => {
               disabled={loading}
               className="w-full py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-brand-500/25 transition active:scale-95 disabled:opacity-50"
             >
-              <span>{loading ? 'Authenticating...' : 'Sign In as Customer'}</span>
+              <span>{loading ? 'Authenticating...' : 'Sign In'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>
@@ -139,7 +139,7 @@ const Login = () => {
           {/* Links */}
           <div className="pt-2 text-center border-t border-slate-800 space-y-1.5">
             <p className="text-[11px] text-slate-400">
-              New to ApexRealty?{' '}
+              New to DARV Real Estate?{' '}
               <Link to="/register" className="text-brand-400 font-bold hover:underline">
                 Create a free customer account
               </Link>

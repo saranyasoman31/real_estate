@@ -65,7 +65,7 @@ npm run dev
 
 | Role | Username / Email | Password | Access Route |
 | :--- | :--- | :--- | :--- |
-| **Primary Agent (DARV)** | `saranyasoman31@gmail.com` | `123456` | `/admin` or `/auth/login` |
+| **Primary Agent (DARV)** | `darvproperties.com` (or `saranyasoman31@gmail.com`) | `123456` | `/admin` or `/auth/login` |
 
 ---
 

@@ -95,13 +95,13 @@ const AdminLogin = () => {
           {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-slate-300 mb-1.5">Agent Email Address</label>
+              <label className="block text-xs font-bold text-slate-300 mb-1.5">Agent Username / Email</label>
               <div className="relative">
                 <input
-                  type="email"
+                  type="text"
                   name="email"
                   required
-                  placeholder="agent@agency.com"
+                  placeholder="darvproperties.com"
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
@@ -117,7 +117,7 @@ const AdminLogin = () => {
                   type="password"
                   name="password"
                   required
-                  placeholder="••••••••"
+                  placeholder="123456"
                   value={formData.password}
                   onChange={handleChange}
                   className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-800/90 border border-slate-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
@@ -134,6 +134,12 @@ const AdminLogin = () => {
               <span>{loading ? 'Authenticating...' : 'Sign In as Agent'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
+
+            <div className="p-2.5 rounded-xl bg-slate-800/50 border border-slate-700/60 text-center">
+              <p className="text-[11px] text-slate-400">
+                Agent Login: <strong className="text-amber-300 font-mono">darvproperties.com</strong> &nbsp;•&nbsp; Pass: <strong className="text-amber-300 font-mono">123456</strong>
+              </p>
+            </div>
           </form>
 
           {/* Public customer notice */}

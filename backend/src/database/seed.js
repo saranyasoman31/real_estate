@@ -27,15 +27,15 @@ async function seed() {
     `);
 
     // 3. Create Default Agent / Client User
-    // Email: saranyasoman31@gmail.com, Password: 123456
+    // Email/Username: darvproperties.com, Password: 123456
     const passwordHash = await bcrypt.hash('123456', 10);
     const userRes = await pool.query(`
       INSERT INTO users (name, email, password_hash, phone, role, avatar_url, is_active)
       VALUES (
         'Saranya Soman',
-        'saranyasoman31@gmail.com',
+        'darvproperties.com',
         $1,
-        '+91 98470 12345',
+        '+91 6282649279',
         'client',
         '/images/darv-icon.png',
         true
@@ -123,7 +123,7 @@ async function seed() {
 
     console.log('✅ Database cleanly seeded with zero dummy properties.');
     console.log('--- Default Agent Login Credentials ---');
-    console.log('Username / Email: saranyasoman31@gmail.com');
+    console.log('Username / Email: darvproperties.com');
     console.log('Password:         123456');
     console.log('Portal Route:     /admin');
   } catch (err) {
